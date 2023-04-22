@@ -16,7 +16,7 @@ cd `pwd`/build &&
 # 回到项目根目录
 cd ..
 
-# 把头文件拷贝到 /usr/include/mymuduo  so库拷贝到 /usr/lib    PATH
+# 把头文件拷贝到 /usr/include/Muduo  so库拷贝到 /usr/lib    PATH
 if [ ! -d /usr/include/Muduo ]; then 
     mkdir /usr/include/Muduo
 fi
