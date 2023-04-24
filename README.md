@@ -181,10 +181,10 @@ make
 ```bash
 +-------------------+----------------+----------------+ 
 | prependable bytes | readable bytes | writable bytes |
-|					|    (CONTENT)   | 				  |
+|                   |    (CONTENT)   |                |
 +-------------------+----------------+----------------+ 
-|					|				 | 				  |
-0		<=	   readerIndex   <=  writerIndex   <=    size
+|                   |                |                |
+0       <=     readerIndex   <=  writerIndex   <=    size
 ```
 
 **TcpConnection组件：** 新用户连接后的一系列回调操作
