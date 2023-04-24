@@ -88,14 +88,14 @@ make
 
 ## 项目分析
 
-**Logger组件：**对日志信息的封装，便于查看运行时状态，便于调试
+**Logger组件：** 对日志信息的封装，便于查看运行时状态，便于调试
 
 - LOG_INFO：提示信息。
 - LOG_ERROR：错误信息(不影响程序正常执行)。
 - LOG_FATAL：致命错误信息(导致程序崩溃，执行了exit)。
 - LOG_DUBUG：调试信息。
 
-**Channel组件：**封装fd，events，revents，以及一组回调
+**Channel组件：** 封装fd，events，revents，以及一组回调
 
 - fd：Poller上注册的文件描述符
 - events：fd感兴趣的事件（读事件或者写事件）
@@ -109,7 +109,7 @@ make
 
 ### Poller & EPollPoller >> Demultiplex
 
-**Poller组件：**多路事件分发器的核心，可以看作Poll和Epoll的一个抽象
+**Poller组件：** 多路事件分发器的核心，可以看作Poll和Epoll的一个抽象
 
 - 成员变量`channels_`：std::unordered_map<int, Channel *>
   - key：int类型，也就是Channel打包的sockfd
@@ -118,7 +118,7 @@ make
 
 - 采用多态机制，提供抽象类，Poll和Epoll通过继承Poller，同时重写Poller的纯虚函数的接口，实现多路转接模型。
 
-**EpollPoller组件：**封装了Epoll的相关接口
+**EpollPoller组件：** 封装了Epoll的相关接口
 
 - 通过继承Poller并且重写其提供的纯虚函数接口，实现Epoll多路转接模型
 - 将Epoll的接口封装成了一个类，提供向Epoll中添加、修改、删除所关心的事件的接口以及开启事件监听的函数接口
@@ -126,7 +126,7 @@ make
 
 ### EventLoop >> Reactor
 
-**EventLoop组件：**事件循环，也就是Reactor反应堆
+**EventLoop组件：** 事件循环，也就是Reactor反应堆
 
 - 整体上看，EventLoop管理的是一堆Channel和一个Poller，以及本身的wakeupFd_
 
@@ -143,17 +143,17 @@ make
 
 ### Thread & EventLoopThread & EventLoopThreadPool
 
-**Thread组件：**线程的相关操作
+**Thread组件：** 线程的相关操作
 
 - 封装了线程的创建，启动，和执行线程的入口的函数
 - 封装了线程的join函数
 
-**EventLoopThread组件：**事件循环线程
+**EventLoopThread组件：** 事件循环线程
 
 - 对Thread组件的封装，提供启动底层的线程的方法
 - 为将要创建的线程设置入口函数
 
-**EventLoopThreadPool组件：**事件循环线程池
+**EventLoopThreadPool组件：** 事件循环线程池
 
 - 可以通过成员函数设置线程数量
 - 根据线程数量创建线程，将每个线程上所创建的loop地址返回
@@ -162,16 +162,16 @@ make
 
 ### Socket & Acceptor组件
 
-**Socket组件：**封装socket的相关操作，看作是网络编程函数接口的抽象
+**Socket组件：** 封装socket的相关操作，看作是网络编程函数接口的抽象
 
-**Acceptor组件：**封装了listenfd相关的操作
+**Acceptor组件：** 封装了listenfd相关的操作
 
 - 创建用于监听和获取新连接的accpetSocket，为其绑定地址信息
 - 将accpetSocket以及其感兴趣的事件(新连接到来)打包成accpetChannel
 - 监听新连接到来并将accpetChannel通过EventLoop注册到所属的epoll中去
   - acceptorChaneel所属的loop就是mainLoop
 
-**buffer组件：**数据缓冲区
+**buffer组件：** 数据缓冲区
 
 - 解决TCP接受缓冲区较小但是用户发送数据过多问题，或是只需要读取部分数据的问题
 - 缓冲区模型如下
@@ -187,7 +187,7 @@ make
 0		<=	   readerIndex   <=  writerIndex   <=    size
 ```
 
-**TcpConnection组件：**新用户连接后的一系列回调操作
+**TcpConnection组件：** 新用户连接后的一系列回调操作
 
 - 一个连接成功的客户端对应一个TcpConnection，包括：
   - 封装的socket，Channel
@@ -199,7 +199,7 @@ make
   - 实现EventHandler
   - 发送数据
 
-**TcpServer组件：**总调度
+**TcpServer组件：** 总调度
 
 - 供用户创建TcpServer对象，使用TCP服务器
 - 对外提供了设置建立新连接回调函数、读写消息回调函数、开启事件循环、设置线程数量并创建线程等函数接口
