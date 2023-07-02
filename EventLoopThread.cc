@@ -33,7 +33,7 @@ EventLoop* EventLoopThread::startLoop()
     return loop;
 }
 
-// 下面这个方法，实在单独的新线程里面运行的
+// 下面这个方法，是在单独的新线程里面运行的
 void EventLoopThread::threadFunc()
 {
     EventLoop loop; // 创建一个独立的eventloop，和上面的线程是一一对应的，one loop per thread
