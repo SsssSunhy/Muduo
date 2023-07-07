@@ -93,7 +93,7 @@ make
 - LOG_INFO：提示信息。
 - LOG_ERROR：错误信息(不影响程序正常执行)。
 - LOG_FATAL：致命错误信息(导致程序崩溃，执行了exit)。
-- LOG_DUBUG：调试信息。
+- LOG_DEBUG：调试信息。
 
 **Channel组件：** 封装fd，events，revents，以及一组回调
 
